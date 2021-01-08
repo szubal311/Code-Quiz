@@ -1,79 +1,89 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
-  <body>
-     <div class="container">
-  <header class="row">
-      <div class="col-md-6" id="highScores">
-          <a href="high-scores.html" class="text-danger">High Scores</a>
-      </div>
-      <div class="col-md-6" id="timer">
-        Time: <span id = "time">0</span>
-      </div>
-  </header>
-     <!-- Coding Trivia Title -->
-     <section id="title-section" class="title">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Coding Trivia</h1>
+
+<body>
+    <div class="container">
+        <header class="row">
+            <div class="col-md-6" id="highScores">
+                <a href="high-scores.html" class="text-danger"><strong>High Scores</strong></a>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Test your JavaScript knowledge. Answer the code related questions withing the time limit. To make things interesting, you will be penalized 5 seconds for every wrong answer. 
-                    Good Luck!
-                </p>
+            <div class="col-md-6" id="timer">
+                Time: <span id="time">0</span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button id="startBtn">Start Trivia</button>
+        </header>
+        <!-- Coding Trivia Title -->
+        <section id="title-section" class="reveal">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Coding Trivia</h1>
+                </div>
             </div>
-        </div>
-     </section>
-     <!-- Trivia Questions -->
-     <section id="trivia-section" class="conceal">
-        <div class="row">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Test your JavaScript knowledge. Answer the code related questions withing the time limit. To make
+                        things interesting, you will be penalized 5 seconds for every wrong answer.
+                    </p>
+                    <p>Good Luck!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="startBtn">Start Trivia</button>
+                </div>
+            </div>
+        </section>
+        <!-- Trivia Questions -->
+        <section id="trivia-section" class="conceal">
+            <div class="row">
                 <div class="col-md-12 questions">
                     <h3 id="question-title"></h3>
                 </div>
             </div>
             <div class="row">
-                <div class= "col-md-12" id="choices"></div>
+                <div class="col-md-12" id="choices"></div>
                 <div id="evaluation" class="evaluation conceal"></div>
             </div>
-        </div>
-     </section>
+    </div>
+    </section>
 
-     <!-- High Score Section -->
-     <section id="highscore-section" class="conceal">
+    <!-- High Score Section -->
+    <section id="highscore-section" class="conceal">
         <div class="row">
             <div id="high-score" class="col-md-12">
                 <h2>Finished!</h2>
                 <h3>Your Final Score <span id="final-score">0</span></h3>
                 <label for="initials-area">Enter Your Initials:</label>
                 <input type="text" name="initials-area" maxlength="4" id="initials">
+                <button id="submit-button" type="submit">Submit</button>
             </div>
         </div>
-     </section>
-
-
+    </section>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-</div>  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    </div>
 </body>
+
 </html>
