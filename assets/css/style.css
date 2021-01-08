@@ -1,38 +1,110 @@
-/* Hide sections other than title */
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: larger;
-    background-color: rgb(204, 207, 209);
+    background-color: rgb(145, 145, 145);
 }
 
-section {
-    background-color: white;
-    border: solid 2px black;
-    padding: 10px;
+* {
+   box-sizing: border-box;
+   margin: 0%;
+   padding: 0%;
+   font-size: 62.5%; 
+   font-family: 'Play', sans-serif;
+}
+
+h1 {
+    font-size: 5.4rem;
+    margin-bottom: 3rem;
+}
+
+p {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    
+}
+
+h2{
+    font-size: 4.2rem;
+    margin-bottom: 3rem;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;    
+}
+
+.justify-center {
+
+}
+
+.text-center {
+
 }
 
 .conceal {
     display: none;
 }
 
-.reveal {
-    display: block;
-}
-
-h1 {
+.btn {
+    border: none;
+    background: rgba(1, 114, 58, 0.884);
+    border-radius: 25px;
+    color: hsl(0, 0%, 100%);
+    display: inline-block;
+    line-height: 2.4rem;
+    margin: 1.6rem 1.6rem 1.6rem 2rem;
+    padding: 1.4rem 3.4rem;
     text-align: center;
+    font-size: 2.2rem;
+
+
 }
 
-p {
-    padding: 0 10%;
+.btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(1, 114, 58, 0.884);
+    transform: scale(1.03);
 }
 
-#startBtn {
-    display: block;
-    margin: 0 auto;
+.btn[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
-#choices {
-    display: block;
-    margin-top: 10px;
+#highscores-btn {
+    background: rgba(114, 1, 1, 0.884);
+}
+
+#highscores-btn:hover {
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(114, 1, 1, 0.884);
+}
+
+.fa-play {
+    font-size: ;
+}
+
+.fa-play-circle {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.fa-fort-awesome-alt {
+    font-size: 2rem;
+    margin-left: 1rem;
 }
