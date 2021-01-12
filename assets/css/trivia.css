@@ -22,6 +22,8 @@
 }
 
 .choice-text {
+    color: #ffffff;
+    background-color: black;
     padding: 2rem;
     width: 100%;
 }
