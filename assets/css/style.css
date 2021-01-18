@@ -109,6 +109,21 @@ h2{
     margin-left: 1rem;
 }
 
+.fa-retweet {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.fa-home {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.fa-save {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
 /* High Scores Page CSS */
 
 .end-form-container {

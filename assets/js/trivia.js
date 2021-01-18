@@ -1,4 +1,4 @@
-const question = document.getElementById("#question");
+const questionEl = document.getElementById("#question");
 const choices = Array.from(document.querySelectorAll(".choice-text"));
 const progressText = document.querySelector("#progressText");
 const scoreText = document.querySelector("#score");
@@ -74,14 +74,14 @@ getNewQuestion = () => {
         return window.location.assign("trivia-end.html");
     }
 
-    questionCounter++
+    // questionCounter++
     progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
     progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`
 
-
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex];
-    question.innerText = currentQuestion.question;
+    
+    // const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+    // currentQuestion = availableQuestions[questionsIndex];
+    questionEl.textContent = questions[questionCounter].question;
 
     choices.forEach(choice => {
         const number = choice.dataset["number"];
@@ -126,6 +126,9 @@ incrementScore = num => {
     score += num
     scoreText.innerText = score
 }
+
+
+
 
 
 
