@@ -1,4 +1,4 @@
-const question = document.querySelector("#question");
+const questionEl = document.getElementById("#question");
 const choices = Array.from(document.querySelectorAll(".choice-text"));
 const progressText = document.querySelector("#progressText");
 const scoreText = document.querySelector("#score");
@@ -57,31 +57,31 @@ let questions = [
     }
 
 ]
-const score_points = 100;
-const max_questions = 5;
+const SCORE_POINTS = 100;
+const MAX_QUESTIONS = 5;
 
-function startGame() {
-    questionCounter = 0;
-    score = 0;
+startGame = () => {
+    questionCounter = 0
+    score = 0
     availableQuestions = [...questions];
     getNewQuestion();
 }
 
-function getNewQuestion() {
-    if (availableQuestions.length === 0 || questionCounter > max_questions) {
+getNewQuestion = () => {
+    if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem("mostRecentScore", score);
 
-        return window.location.assign("trivia-end.html");
+        return window.location.assign("trivia.html");
     }
 
-    questionCounter++
-    progressText.innerText = `Question ${questionCounter} of ${max_questions}`
-    progressBarFull.style.width = `${(questionCounter / max_questions) * 100}%`
+    // questionCounter++
+    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
+    progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`
 
     
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex];
-    //questionEl.textContent = questions[questionCounter].question;
+    // const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+    // currentQuestion = availableQuestions[questionsIndex];
+    questionEl.textContent = questions[questionCounter].question;
 
     choices.forEach(choice => {
         const number = choice.dataset["number"];
@@ -95,7 +95,7 @@ function getNewQuestion() {
 }
 
 choices.forEach(choice => {
-    choice.addEventListener("click", function (e) {
+    choice.addEventListener("click", (e) => {
             if (!acceptingAnswers)
                 return;
 
@@ -107,7 +107,7 @@ choices.forEach(choice => {
             let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
             if (classToApply === "correct") {
-                incrementScore(score_points);
+                incrementScore(SCORE_POINTS);
 
             }
 
@@ -128,6 +128,7 @@ incrementScore = num => {
 }
 
 startGame()
+
 
 
 

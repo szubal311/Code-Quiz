@@ -2,13 +2,21 @@ const question = document.getElementById("#question");
 const choices = Array.from(document.querySelectorAll(".choice-text"));
 const progressText = document.querySelector("#progressText");
 const scoreText = document.querySelector("#score");
-const procressBarFull = document.querySelector("#procressBarFull");
+const displayScore = document.getElementById("displayScore"); 
+const displayQuestion = document.getElementById("displayQuestion");
+const buttons = document.getElementById(".buttons");
+const displayTime= document.getElementById("displayTime");
+const answer1 = document.getElementById("answer1");
+const answer2 = document.getElementById("answer2");
+const answer3 = document.getElementById("answer3");
+const answer4 = document.getElementById("answer4");
 
-let currentQuestion = {};
-let acceptingAnswers = true;
-let score = 0;
-let questionCounter = 0;
-let availableQuestion = [];
+let fininsh = [];
+let timer;
+let userScore = 0;
+let timerinit = 75;
+let sequence = 0;
+let storeageSaved = localStorage.getItem("User Score");
 
 let questions = [
     {
@@ -55,77 +63,73 @@ let questions = [
         choice4: "alert('Hello Smarty Pants')",
         answer: 4,
     },
+    {
+        question: "",
+        correct: "",
+        choiceA: "",
+        choiceB: "",
+        choiceC: "",
+        choiceD: "",
+      },
 
-]
-const SCORE_POINTS = 100;
-const MAX_QUESTIONS = 5;
+];
 
-startGame = () => {
-    score = 0
-    availableQuestions = [...questions];
-    getNewQuestion();
-}
+timer = setInterval(timerFunction, 1000);
+timerSpan.textContent = timerinit;
+displayScore.textContent = userScore;
 
-getNewQuestion = () => {
-    if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem("mostRecentScore", score);
+    
 
-        return window.location.assign("/end.html");
+showArray = () => {
+    question.textContent = questions[sequence].question;
+    answer1.textContent = questions[sequence].choiceA;
+    answer2.textContent = questions[sequence].choiceB;
+    answer3.textContent = questions[sequence].choiceC;
+    answer4.textContent = questions[sequence].choiceD;
+    displayScore.textContent = userScore;
+
+    if (sequence === 5 || timerinit === 0) {
+        stashScore();
+        finishGame();
     }
-
-    questionCounter++
-    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
-    progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`
-
-
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex];
-    question.innerText = currentQuestion.question;
-
-    choices.forEach(choice => {
-        const number = choice.dataset["number"];
-        choice.innerText - currentQuestion["choice " + number];
-    });
-
-    availableQuestions.splice(questionsIndex, 1);
-
-    acceptingAnswers = true;
-
 };
 
-choices.forEach(choice => {
-    choice.addEventListener("click", e => {
-        if (!acceptingAnswers) return
+buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (e.target.textContent === questions[sequence].correct) {
+            correctAnswer();
+        } else incorrectAnswer();
+    });
+});
 
-        acceptingAnswers = false;
-        const selectedChoice = e.target;
-        const selectedAnswer = selecetedChoice.dataset["number"];
-
-        let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect"
-
-        if (classToApply === "correct") {
-            incrementScore(SCORE_POINTS)
-
-        }
-
-        selectedChoice.parentElement.classList.add(classToApply)
-
-        setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply)
-            getNewQuestion()
-
-        }, 1000)
-    })
-
-})
-
-incrementScore = num => {
-    score += num
-    scoreText.innerText = score
+correctAnswer = () => {
+    sequence++;
+    userScore +- 20;
+    showArray();
 }
 
+incorrectAnswer = () => {
+    sequence++;
+    timerinit -= 20;
+    showArray();
+}
 
+timerFunction = () => {
+    timerinit --;
+    timerSpan.textContent = timerinit;
+    if (timerinit <= 0) {
+        stashScore();
+        clearInterval(timer);
+    }
+}
 
+finishGame = () => {
+    clearInterval(timer);
+    location.replace("highscores.html");
+}
 
-
-
+stashScore = () => {
+    let scoreText = "User Score";
+    localStorage.setItem("userscore", userScore)
+}
