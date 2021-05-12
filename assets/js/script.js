@@ -1,135 +1,63 @@
-const question = document.getElementById("#question");
-const choices = Array.from(document.querySelectorAll(".choice-text"));
-const progressText = document.querySelector("#progressText");
-const scoreText = document.querySelector("#score");
-const displayScore = document.getElementById("displayScore"); 
-const displayQuestion = document.getElementById("displayQuestion");
-const buttons = document.getElementById(".buttons");
-const displayTime= document.getElementById("displayTime");
-const answer1 = document.getElementById("answer1");
-const answer2 = document.getElementById("answer2");
-const answer3 = document.getElementById("answer3");
-const answer4 = document.getElementById("answer4");
+import questions from "./questions";
 
-let fininsh = [];
-let timer;
-let userScore = 0;
-let timerinit = 75;
-let sequence = 0;
-let storeageSaved = localStorage.getItem("User Score");
+const quizPage = document.getElementById("quizPage");
+const formSubmit = document.querySelector("welcome-form");
+const quizEl = document.getElementById("quiz");
 
-let questions = [
-    {
-        question: "Which of the following is not a JavaScript data type?",
-        choice1: "number",
-        choice2: "undifined",
-        choice3: "boolean",
-        choice4: "float",
-        answer: 4,
-    },
+let newQuestion = questions;
+let answeredQuestion = [];
+let questionCount = 0;
+let quizScore = 0;
 
-    {
-        question: "In  which HTML element do we put the JavaScript?",
-        choice1: "<head>",
-        choice2: "<style>",
-        choice3: "<script>",
-        choice4: "<meta>",
-        answer: 3,
-    },
+formSubmit.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = e.target.querySelector("userName").value.trim();
+    if (!name) {
+        return;
+    }
 
-    {
-        question: "Which keyword is not a Javascript statement?",
-        choice1: "with",
-        choice2: "use strict",
-        choice3: "debugger",
-        choice4: "if",
-        answer: 2,
-    },
+    localStorage.setItem("initals", initials.toUpperCase());
+    const quizMain = document.getElementById("quizMain");
+    quizMain.style.display ="none";
+    topScore();
 
-    {
-        question: "What are the Pop Up box types used in Javascript?",
-        choice1: "prompt",
-        choice2: "alert",
-        choice3: "confirm",
-        choice4: "all of the above",
-        answer: "4",
-    },
+    const topScore = () => {
+        let userInitials = localStorage.getItem("initials");
+        if (!userInitials) {
+            return;
+        }
 
-    {
-        question: "Which of the following will write the message 'Hello Smarty Pants'?",
-        choice1: "alertBox('Hello Smarty Pants')",
-        choice2: "alert(Hello Smarty Pants)",
-        choice3: "msgAlert('Hello Smarty Pants')",
-        choice4: "alert('Hello Smarty Pants')",
-        answer: 4,
-    },
-    {
-        question: "",
-        correct: "",
-        choiceA: "",
-        choiceB: "",
-        choiceC: "",
-        choiceD: "",
-      },
+        startTimer("start");
 
-];
+        const  nextBtn = quizPage.querySelector(".btn-next");
+        nextBtn.addEventListener("click", nextQuestion.length);
+    }
 
-timer = setInterval(timerFunction, 1000);
-timerSpan.textContent = timerinit;
-displayScore.textContent = userScore;
+    const nextQuestion = () => {
+        const currentEl = document.querySelector("li.current");
+        if (currentEl) {
+            calculateScore(currentEl.innerHTML);
+        } else {
+            return;
+        }
+
+        questionCount++;
+        if (questionCount > newQuestion.length -1) {
+                        // startTimer("stop");
+            // const timeInfo = document.querySelector(".timer span").textContent;
+            // const
+        }
+        show(questionCount);
+    }
+
+    calculateScore = (userAnswer) => {
+        if (userAnswer === newQuestion[questionCount].answer) {
+            quizPoint += 10;
+            localStorage.setItem("score",`${quizPoint} out of ${newQuestion.length * 10}`);
+        } else {
+            console.log("Incorrect Answer");
+        }
+    }
 
     
-
-showArray = () => {
-    question.textContent = questions[sequence].question;
-    answer1.textContent = questions[sequence].choiceA;
-    answer2.textContent = questions[sequence].choiceB;
-    answer3.textContent = questions[sequence].choiceC;
-    answer4.textContent = questions[sequence].choiceD;
-    displayScore.textContent = userScore;
-
-    if (sequence === 5 || timerinit === 0) {
-        stashScore();
-        finishGame();
-    }
-};
-
-buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (e.target.textContent === questions[sequence].correct) {
-            correctAnswer();
-        } else incorrectAnswer();
-    });
-});
-
-correctAnswer = () => {
-    sequence++;
-    userScore +- 20;
-    showArray();
-}
-
-incorrectAnswer = () => {
-    sequence++;
-    timerinit -= 20;
-    showArray();
-}
-
-timerFunction = () => {
-    timerinit --;
-    timerSpan.textContent = timerinit;
-    if (timerinit <= 0) {
-        stashScore();
-        clearInterval(timer);
-    }
-}
-
-finishGame = () => {
-    clearInterval(timer);
-    location.replace("highscores.html");
-}
-
-stashScore = () => {
-    let scoreText = "User Score";
-    localStorage.setItem("userscore", userScore)
-}
+})

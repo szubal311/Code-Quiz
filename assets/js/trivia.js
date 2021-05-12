@@ -1,14 +1,22 @@
-const question = document.querySelector("#question");
+const question = document.getElementById("#question");
 const choices = Array.from(document.querySelectorAll(".choice-text"));
 const progressText = document.querySelector("#progressText");
 const scoreText = document.querySelector("#score");
-const procressBarFull = document.querySelector("#procressBarFull");
+const displayScore = document.getElementById("displayScore"); 
+const displayQuestion = document.getElementById("displayQuestion");
+const buttons = document.getElementById(".buttons");
+const displayTime= document.getElementById("displayTime");
+const answer1 = document.getElementById("answer1");
+const answer2 = document.getElementById("answer2");
+const answer3 = document.getElementById("answer3");
+const answer4 = document.getElementById("answer4");
 
-let currentQuestion = {};
-let acceptingAnswers = true;
-let score = 0;
-let questionCounter = 0;
-let availableQuestions = [];
+let fininsh = [];
+let timer;
+let userScore = 0;
+let timerinit = 75;
+let sequence = 0;
+let storeageSaved = localStorage.getItem("User Score");
 
 let questions = [
     {
@@ -54,85 +62,77 @@ let questions = [
         choice3: "msgAlert('Hello Smarty Pants')",
         choice4: "alert('Hello Smarty Pants')",
         answer: 4,
-    }
+    },
+    {
+        question: "",
+        correct: "",
+        choiceA: "",
+        choiceB: "",
+        choiceC: "",
+        choiceD: "",
+      },
 
-]
-const score_points = 100;
-const max_questions = 5;
+];
 
-function startGame() {
-    questionCounter = 0;
-    score = 0;
-    availableQuestions = [...questions];
-    getNewQuestion();
-}
-
-function getNewQuestion() {
-    if (availableQuestions.length === 0 || questionCounter > max_questions) {
-        localStorage.setItem("mostRecentScore", score);
-
-        return window.location.assign("trivia-end.html");
-    }
-
-    questionCounter++
-    progressText.innerText = `Question ${questionCounter} of ${max_questions}`
-    progressBarFull.style.width = `${(questionCounter / max_questions) * 100}%`
+timer = setInterval(timerFunction, 1000);
+timerSpan.textContent = timerinit;
+displayScore.textContent = userScore;
 
     
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex];
-    //questionEl.textContent = questions[questionCounter].question;
 
-    choices.forEach(choice => {
-        const number = choice.dataset["number"];
-        choice.innerText = currentQuestion["choice" + number];
-    })
+showArray = () => {
+    question.textContent = questions[sequence].question;
+    answer1.textContent = questions[sequence].choiceA;
+    answer2.textContent = questions[sequence].choiceB;
+    answer3.textContent = questions[sequence].choiceC;
+    answer4.textContent = questions[sequence].choiceD;
+    displayScore.textContent = userScore;
 
-    availableQuestions.splice(questionsIndex, 1);
+    if (sequence === 5 || timerinit === 0) {
+        stashScore();
+        finishGame();
+    }
+};
 
-    acceptingAnswers = true;
-
-}
-
-choices.forEach(choice => {
-    choice.addEventListener("click", function (e) {
-            if (!acceptingAnswers)
-                return;
-
-
-            acceptingAnswers = false;
-            const selectedChoice = e.target;
-            const selectedAnswer = selectedChoice.dataset["number"];
-
-            let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-
-            if (classToApply === "correct") {
-                incrementScore(score_points);
-
-            }
-
-            selectedChoice.parentElement.classList.add(classToApply);
-
-            setTimeout(() => {
-                selectedChoice.parentElement.classList.remove(classToApply);
-                getNewQuestion();
-
-            }, 1000);
-        });
-
+buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (e.target.textContent === questions[sequence].correct) {
+            correctAnswer();
+        } else incorrectAnswer();
+    });
 });
 
-incrementScore = num => {
-    score += num
-    scoreText.innerText = score
+correctAnswer = () => {
+    sequence++;
+    userScore +- 20;
+    showArray();
 }
 
-startGame()
+incorrectAnswer = () => {
+    sequence++;
+    timerinit -= 20;
+    showArray();
+}
+
+timerFunction = () => {
+    timerinit --;
+    timerSpan.textContent = timerinit;
+    if (timerinit <= 0) {
+        stashScore();
+        clearInterval(timer);
+    }
+}
+
+finishGame = () => {
+    clearInterval(timer);
+    location.replace("highscores.html");
+}
+
+stashScore = () => {
+    let scoreText = "User Score";
+    localStorage.setItem("userscore", userScore)
 
 
 
-
-
-
-
-
+}
