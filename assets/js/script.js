@@ -59,5 +59,28 @@ formSubmit.addEventListener("submit", (e) => {
         }
     }
 
-    
+        displayQuestion = (index) => {
+            let question = document.querySelector(".question");
+            question.innerHTML = `<h4 class="card-title">Q${questionCount +1}.${newQuestion[index].question}</h4>`;
+            const ul =document.createElement("ul");
+            ul.className = "option-group";
+            newQuestion[index].options.forEach(option => {
+                let li =document.createElement("li");
+                li.className = "option";
+                li.textContent = option;
+                li.addEventListener("click", toggleOption)
+                ul.appendChild(li);
+            })
+            question.appendChild("ul");
+        }
+
+        toggleOption = (e) => {
+            const options = document.querySelectorAll("li");
+            options.forEach(options => {
+                if(options.textContent != e.target.textContent) {
+                    option.classList.remove("active")
+                }
+            })
+            e.target.classList.toggleOption("current");
+        }
 })
