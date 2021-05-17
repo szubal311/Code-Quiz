@@ -10,6 +10,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
@@ -38,11 +39,11 @@
     <!-- container for start button-->
     <div id="startDiv">
       <div class="row text-center">
-        <h2 class="col-md-12 display-4 mb-5 text-dark">Click start to begin!
+        <h2 class="col-md-12 display-4 mb-5 startText">Click start to begin!
         </h2>
       </div>
       <div class="row text-center">
-        <button class="btn btn-dark col-md-1 mx-auto" id="startBtn">Start</button>
+        <button class="btn col-md-1 mx-auto" id="startBtn">Start</button>
       </div>
     </div>
 
@@ -50,28 +51,28 @@
     <div id="quizDiv" class="invisible">
       <!-- Question-->
       <div class="row">
-        <div class="col-md-12 text-center mb-4 text-dark" id="Q" style="font-size:35px">Question
+        <div class="col-md-12 text-center mb-4 question" id="Q" style="font-size:35px">Question
         </div>
       </div>
       <!--Choices-->
       <div class="row">
         <div id="choices" class="col-md-3 btn-group-vertical mx-auto">
-          <button type="button" class="answerBtn btn btn-dark mb-2" id="C1">C1</button>
-          <button type="button" class="answerBtn btn btn-dark mb-2" id="C2">C2</button>
-          <button type="button" class="answerBtn btn btn-dark mb-2" id="C3">C3</button>
-          <button type="button" class="answerBtn btn btn-dark mb-2" id="C4">C4</button>
+          <button type="button" class="answerBtn btn mb-2" id="C1">C1</button>
+          <button type="button" class="answerBtn btn mb-2" id="C2">C2</button>
+          <button type="button" class="answerBtn btn mb-2" id="C3">C3</button>
+          <button type="button" class="answerBtn btn mb-2" id="C4">C4</button>
 
         </div>
       </div>
       <!--Correct or Wrong-->
       <div class="row">
-        <div id="correct" class="col-md-12 text-center text-info"></div>
+        <div id="correct" class="col-md-12 text-center"></div>
       </div>
     </div>
     <!--score and leader board to show at the end-->
     <div id="endScore" class="invisible">
       <div class="row">
-        <div class="col-md-12 display-4 mb-5 text-center text-dark">Your Score: <span id="finalScore"
+        <div class="col-md-12 display-4 mb-5 text-center">Your Score: <span id="finalScore"
             class="col-md-12 display-4 mb-5 text-center"></span>
         </div>
       </div>
@@ -86,13 +87,13 @@
       </div>
       <div class="form-group row">
         <div class="col-md-4"></div>
-        <button type="button" class="submitBtn btn btn-dark mb-2 mx-auto">Submit</button>
+        <button type="button" class="submitBtn btn mb-2 mx-auto">Submit</button>
         <div class="col-md-4"></div>
       </div>
     </div>
 
     <!--Score board and clear score-->
-    <div id="highScores" class="invisible text-info">
+    <div id="highScores" class="invisible ">
       <div class="row text-center">
         <div class="col-md-5  mb-5"></div>
         <div class="col-md-2 mb-5 ">
@@ -107,8 +108,8 @@
       <div class="row text-center"></div>
       <div class="col-md-5 display-4 mb-5"></div>
       <div class="col-md-2 display-4 mb-5 mx-auto">
-        <button type="button" class="removeBtn btn btn-info mb-2">Clear Scores</button>
-        <button onclick="window.location.href='';" type="button" class="returnBtn btn btn-info mb-2">Return to Quiz</button>
+        <button type="button" class="removeBtn btn mb-2">Clear Scores</button>
+        <button onclick="window.location.href='';" type="button" class="returnBtn btn mb-2">Replay Quiz</button>
       </div>
       <div class="col-md-5 display-4 mb-5"></div>
     </div>

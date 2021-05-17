@@ -136,7 +136,7 @@ function isCorrect(btnId) {
 
   }
   else {
-    correct.textContent = "Wrong Answer";
+    correct.textContent = "Sorry Wrong Answer";
 
     if (secondsLeft > 15) {
       secondsLeft = secondsLeft - 15;

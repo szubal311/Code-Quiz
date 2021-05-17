@@ -26,41 +26,7 @@ body {
     width: 400px;
 }
 
-.welcome-form input, .welcome-form button {
-    display: block;
-    width: 100%;
-}
 
-.welcome-form input:focus, .welcome-form button:focus {
-    outline: none;
-}
-
-.welcome-form input {
-    font-size: 30px;
-    margin-bottom: 15px;
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid #fff;
-    color: #fff;
-    text-transform: capitalize;
-    text-align: center;
-}
-
-.welcome-form button {
-    font-size: 22px;
-    font-weight: 700;
-    border-radius: 100px;
-    padding: 20px 0;
-    border: none;
-    background-color: #fff;
-    color: #6c5ce7;
-    transition: 0.3s ease-in-out;
-}
-
-.welcome-form button:hover {
-    cursor: pointer;
-    transform: translateY(-5px);
-}
 
 /* Quiz page */
 
@@ -82,9 +48,6 @@ body {
     padding: 30px;
 }
 
-.welcome {
-    text-transform: capitalize;
-}
 
 .timer {
     text-align: right;
@@ -130,19 +93,19 @@ body {
 
 .btn-next:hover {
     background-color: #fff;
-    color: #252425;
+    color: #7a7a7a;
     cursor: pointer;
-    border: 2px solid #252425;
+    border: 2px solid #7a7a7a;
     box-shadow: 0 0 10px 1px;
 }
 
 .active {
-    background-color: #252425;
+    background-color: #252424;
     color: #fff;
 }
 
 .active:hover {
-    background-color: #252425;
+    background-color: #7a7a7a;
     color: #fff;
 }
 
@@ -160,6 +123,51 @@ body {
 .user_name, .user_points, .user_time {
     color: #fff;
     margin-top: 15px;
+}
+
+#highScores {
+    color: rgba(100, 1, 1, 0.966);
+}
+
+.returnBtn{
+    background-color:rgb(7, 41, 7);
+    color: white;
+}
+
+#correct {
+    color: rgba(100, 1, 1, 0.966);
+}
+
+.question {
+    color: rgba(100, 1, 1, 0.966);
+}
+
+.answerBtn{ 
+    background-color: rgb(18, 18, 70);
+    color: white;
+}
+
+.startText {
+    color: rgba(100, 1, 1, 0.966);
+}
+
+#startBtn {
+    background-color:rgb(7, 41, 7);
+    color: white;
+}
+
+.submitBtn {
+    background-color:rgb(7, 41, 7);
+    color: white;
+}
+
+#finalScore {
+    color: rgba(100, 1, 1, 0.966);
+}
+
+.removeBtn {
+    background-color: rgba(100, 1, 1, 0.966);
+    color: white;
 }
 /* ............. */
 /* .btn {
